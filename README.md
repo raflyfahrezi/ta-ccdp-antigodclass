@@ -1,10 +1,10 @@
 # Tugas Akhir Mata Kuliah Pemrograman Visual
 
 ### Database
-db_host = 103.214.112.18 \
-db_username = azisnauf_ta_basdat \
-db_name = azisnauf_ta_basdat \
-db_password = KVk^Ybp^jjdh
+db_host = calonwibu.masuk.web.id \
+db_username = calonwib_klinik \
+db_name = calonwib_klinik \
+db_password = DC==&zxRvw}t
 
 ### Query Database
 

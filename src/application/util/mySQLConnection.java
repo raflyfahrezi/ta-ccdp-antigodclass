@@ -24,13 +24,13 @@ public class mySQLConnection {
     }
     
     public Connection getConnection(){
-        String username = "azisnauf_ta_basdat";
-        String password = "KVk^Ybp^jjdh";
-        String db = "azisnauf_ta_basdat";
+        String username = "calonwib_klinik";
+        String password = "DC==&zxRvw}t";
+        String db = "calonwib_klinik";
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://103.214.112.18:3306/" + db + "?autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull",username, password);
+                    "jdbc:mysql://calonwibu.masuk.web.id:3306/" + db + "?autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull",username, password);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Gagal koneksi ke database!", "Gagal", JOptionPane.ERROR_MESSAGE, null);
