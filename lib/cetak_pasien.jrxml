@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3366a8be-9e37-47a2-b9ac-c95e5490aaef">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select no_nota, d.nama_dokter, d.id_dokter, p.nama as nama_pasien, p.id_pasien, pemeriksaan.total, pemeriksaan.tanggal, pemeriksaan.tinggi_badan,
+       pemeriksaan.berat_badan, pemeriksaan.sistolik, pemeriksaan.diastolik
+from pemeriksaan join pasien p on pemeriksaan.id_pasien = p.id_pasien
+join dokter d on d.id_dokter = pemeriksaan.id_dokter
+where pemeriksaan.deleted_at is null]]>
+	</queryString>
+	<field name="no_nota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_dokter" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tinggi_badan" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="berat_badan" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sistolik" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diastolik" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="270" y="0" width="263" height="62" uuid="400d8925-ff2e-47ba-848e-0526ab8f1019"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Puskesmas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="303" y="62" width="196" height="22" uuid="2ffb53b8-9847-4f63-b66c-2795dc195bf4"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Laporan Data Pemeriksaan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="8a37a085-3a74-47eb-975f-983feab7f092"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="50" height="15" forecolor="#736343" uuid="227e24df-2a7e-4440-a32d-5a3122b6a205"/>
+				<text><![CDATA[No Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="50" y="0" width="148" height="15" forecolor="#736343" uuid="61d1002d-8b64-4b54-b8a9-45c571cb578d"/>
+				<text><![CDATA[Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="198" y="0" width="140" height="15" forecolor="#736343" uuid="6115991a-083e-4aed-af90-0b011ec45f6d"/>
+				<text><![CDATA[Dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="338" y="1" width="106" height="15" forecolor="#736343" uuid="ba3c442e-6654-4fb0-b8ce-558e93cf4baf"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="0" width="89" height="15" forecolor="#736343" uuid="9f11b082-1bb1-4e7a-aead-3974f2244fdc"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="533" y="0" width="89" height="15" forecolor="#736343" uuid="ff0c5663-1b66-4d71-845f-ced3db09d52d"/>
+				<text><![CDATA[Tinggi Badan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="624" y="0" width="89" height="15" forecolor="#736343" uuid="850e0175-401c-4a21-ad59-af06f4d02d23"/>
+				<text><![CDATA[Berat Badan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="713" y="1" width="89" height="15" forecolor="#736343" uuid="f81cd63d-c0ac-460f-85c2-abc5f5e3a2f7"/>
+				<text><![CDATA[Tekanan Darah]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="0d9f035f-d465-4666-97cd-a57d3faf2cda"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="50" height="15" uuid="24a5ce0b-1e2e-4a9e-9262-9af6abee2800"/>
+					<textFieldExpression><![CDATA[$F{no_nota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="50" y="0" width="148" height="15" uuid="edc3b382-bbed-4657-aeb1-0305464c65a5"/>
+					<textFieldExpression><![CDATA[$F{nama_pasien}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="198" y="0" width="140" height="15" uuid="f560c901-6770-4eda-9e17-40be1e741bd1"/>
+					<textFieldExpression><![CDATA[$F{nama_dokter}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="338" y="0" width="106" height="15" uuid="67d06898-0e01-4b58-82d3-091771118568"/>
+					<textFieldExpression><![CDATA["Rp "+$F{total}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd MMMM yyyy">
+					<reportElement style="Detail" x="444" y="0" width="89" height="15" uuid="bd59e50a-f952-4be6-b9ea-aed0b42bfa73"/>
+					<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="533" y="0" width="89" height="15" uuid="712400d4-5b33-4659-b893-282a783c52e4"/>
+					<textFieldExpression><![CDATA[$F{tinggi_badan}+" cm"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="713" y="0" width="89" height="15" uuid="80366cb1-d505-402b-99ba-26cfdead8421"/>
+					<textFieldExpression><![CDATA[$F{sistolik}+"/"+$F{diastolik}+" mmHg"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="624" y="0" width="89" height="15" uuid="9346a2e9-db17-42f2-a387-36cb3b4eafe3"/>
+					<textFieldExpression><![CDATA[$F{berat_badan}+" kg"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="6a7db8cd-6d10-42ce-9c07-08c195582cac"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="c1d20e58-cdb4-4f37-819c-bfccdba6d42c"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="9ecedf7b-5dc2-440a-9a03-1e2ab1fb1a5d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="4371549d-5046-4e2a-84ff-2c72e30dc956"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="94385762-90cd-4ae9-920b-656512c3c33a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
