@@ -123,37 +123,12 @@ public class LaporanInternalFrame extends BaseDataTableFrame {
      
         Calendar tanggal1 = dchTanngal1.getCalendar();
         Calendar tanggal2 = dchTanggal2.getCalendar();
-        try
-        {
-            String sql = "select pemeriksaan.no_nota, d.nama_dokter, p.nama as nama_pasien, pemeriksaan.total, pemeriksaan.tanggal, pemeriksaan.tinggi_badan,\n" +
-"       pemeriksaan.berat_badan, pemeriksaan.sistolik, pemeriksaan.diastolik\n" +
-"from pemeriksaan join pasien p on pemeriksaan.id_pasien = p.id_pasien\n" +
-"join dokter d on d.id_dokter = pemeriksaan.id_dokter\n" +
-"where pemeriksaan.deleted_at is null and "
-                    + "tanggal between '"+tanggal1.get(Calendar.YEAR)+"-"+tanggal1.get(Calendar.MONTH)+"-"+tanggal1.get(Calendar.DAY_OF_MONTH)+"' and '"+tanggal2.get(Calendar.YEAR)+"-"+tanggal2.get(Calendar.MONTH)+"-"+tanggal2.get(Calendar.DAY_OF_MONTH)+"'";
-            Connection con = MySQLConnection.getInstance().getConnection();
-            //ambil file
-            File file = new File("lib/cetak_pasien.jrxml");
-
-            JasperDesign jasperDesign = JRXmlLoader.load(file);
-            
-            JRDesignQuery jRDesignQuery = new JRDesignQuery();
-            jRDesignQuery.setText(sql);
-            
-            jasperDesign.setQuery(jRDesignQuery);
-            
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null, con);
-            JasperViewer.viewReport(jasperprint,false);
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        }
-
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            showMessageError("Gagal mencetak laporan!");
-        }
+        Laporan laporan = new Laporan.LaporanBuilder()
+                .setCalendarStart(tanggal1)
+                .setCalendarEnd(tanggal2)
+                .build();
+        
+        laporan.show();
     }//GEN-LAST:event_btnCetakActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
