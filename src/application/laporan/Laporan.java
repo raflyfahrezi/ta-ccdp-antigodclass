@@ -5,7 +5,7 @@
  */
 package application.laporan;
 
-import application.util.MySQLConnection;
+import application.db.MySQLConnection;
 import java.io.File;
 import java.sql.Connection;
 import java.util.Calendar;

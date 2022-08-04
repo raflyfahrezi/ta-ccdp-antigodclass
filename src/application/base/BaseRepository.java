@@ -5,7 +5,7 @@
  */
 package application.base;
 
-import application.util.MySQLConnection;
+import application.db.MySQLConnection;
 
 /**
  *
