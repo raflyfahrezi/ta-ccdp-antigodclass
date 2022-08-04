@@ -39,7 +39,7 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
         presenter.getData();
     }
     
-    public static DokterInternalFrame getInstance(){
+    public static synchronized DokterInternalFrame getInstance(){
         if (instance == null){
             instance = new DokterInternalFrame();
         }
