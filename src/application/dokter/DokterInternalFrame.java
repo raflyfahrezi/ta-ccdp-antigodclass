@@ -7,6 +7,9 @@ package application.dokter;
 
 import application.base.BaseDataTableFrame;
 import application.dokter.form.DokterFormInternalFrame;
+import application.dokter.iterator.DokterCollection;
+import application.dokter.iterator.DokterCollectionImpl;
+import application.dokter.iterator.DokterIterator;
 import application.dokter.state.DokterDefaultState;
 import application.dokter.state.DokterState;
 import application.dokter.state.DokterRefreshState;
@@ -24,6 +27,8 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
     private static DokterInternalFrame instance = null;
     private DokterPresenter presenter = null;
     private DokterState state;
+    private DokterIterator dokterIterator;
+    private DokterCollection dokterCollection;
 
     /**
      * Creates new form DokterInternalFrame
@@ -299,7 +304,12 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
         DefaultTableModel dtm = (DefaultTableModel) tblDokter.getModel();
         //clear dtm
         dtm.setRowCount(0);
-        for (Dokter dokter : dokters) {
+        
+        dokterCollection = new DokterCollectionImpl();
+        dokterIterator = dokterCollection.getListDokter(dokters);
+        
+        while(dokterIterator.hasNext()) {
+            Dokter dokter = dokterIterator.next();
             dtm.addRow(new Object[]{dokter.getNama(), dokter.getAlamat(), dokter.getSpesialis()});
         }
         
