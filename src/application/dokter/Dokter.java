@@ -68,6 +68,9 @@ public class Dokter {
     public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
     }
-
+    
+    public Dokter clone() {
+        return new Dokter(nama, alamat, spesialis, deleted_at);
+    }
     
 }
