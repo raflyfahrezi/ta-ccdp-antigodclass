@@ -8,6 +8,8 @@ package application.pemeriksaan.form;
 import application.base.BaseDataTableFrame;
 import application.dokter.form.DokterFormInternalFrame;
 import application.menu.MenuFrame;
+import application.notification.KirimPaketNotification;
+import application.notification.NotificationDecorator;
 import application.pasien.form.PasienFormInternalFrame;
 import application.pemeriksaan.Pemeriksaan;
 import application.pemeriksaan.PemeriksaanInternalFrame;
@@ -466,6 +468,10 @@ public class PemeriksaanFormInternalFrame extends BaseDataTableFrame implements 
         presenter.setDiastolik(spDiastolik.getValue().toString());
         presenter.setTanggalPemeriksaan(dchTanggalPemeriksaan.getCalendar());
         presenter.validateAndSubmit();
+
+        NotificationDecorator sendNotif = new NotificationDecorator();
+        sendNotif = new KirimPaketNotification(sendNotif);
+        sendNotif.send("Nota telah dikirimkan ke alamat Anda.");
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void cbxDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDokterActionPerformed
