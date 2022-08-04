@@ -7,6 +7,9 @@ package application.dokter;
 
 import application.base.BaseDataTableFrame;
 import application.dokter.form.DokterFormInternalFrame;
+import application.dokter.state.DokterDefaultState;
+import application.dokter.state.DokterState;
+import application.dokter.state.DokterRefreshState;
 import application.menu.MenuFrame;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,6 +23,7 @@ import application.util.Callback;
 public class DokterInternalFrame extends BaseDataTableFrame implements DokterView {
     private static DokterInternalFrame instance = null;
     private DokterPresenter presenter = null;
+    private DokterState state;
 
     /**
      * Creates new form DokterInternalFrame
@@ -27,13 +31,12 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
     private DokterInternalFrame() {
         initComponents();
         presenter = new DokterPresenter(this);
+        state = new DokterDefaultState(this);
         loadData();
     }
     
     private void loadData(){
-        setWaitCursor();
         presenter.getData();
-        setDefaultState();
     }
     
     public static DokterInternalFrame getInstance(){
@@ -217,19 +220,21 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
         // TODO add your handling code here:
         presenter.setIndex(tblDokter.getSelectedRow());
         
-        btnUbah.setEnabled(true);
-        btnHapus.setEnabled(true);
+        state.onItemTableSelected();
     }//GEN-LAST:event_tblDokterMouseClicked
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
+        state.onRefresh();
         loadData();
-        setDefaultState();
+        state.onDefaultState();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
+        state.onRefresh();
         presenter.getData(txtCari.getText());
+        state.onDefaultState();
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
@@ -299,6 +304,7 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
         }
         
         lblJumlahBaris.setText("Jumlah baris: " + dokters.size());
+        state.onDefaultState();
     }
 
     @Override
@@ -320,11 +326,17 @@ public class DokterInternalFrame extends BaseDataTableFrame implements DokterVie
     public void showError(String s) {
         this.showMessageError(s);
     }
-
-    @Override
-    public void setDefaultState() {
-        btnUbah.setEnabled(false);
-        btnHapus.setEnabled(false);
-        setDefaultCursor();
+    
+    public void setEnabledBtnUbah(boolean state) {
+        btnUbah.setEnabled(state);
     }
+    
+    public void setEnabledBtnHapus(boolean state) {
+        btnHapus.setEnabled(state);
+    }
+
+    public void setState(DokterState state) {
+        this.state = state;
+    }
+
 }

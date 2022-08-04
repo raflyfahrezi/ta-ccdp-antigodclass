@@ -15,5 +15,4 @@ import application.base.BaseView;
 public interface DokterView extends BaseView {
     void loadTable(List<Dokter> dokters);
     int delConfirm();
-    void setDefaultState();
 }

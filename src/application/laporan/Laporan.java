@@ -52,6 +52,26 @@ public class Laporan {
         }
 
         public Laporan build() {
+            int monthStartInt = calendarStart.get(Calendar.MONTH) + 1;
+            String monthStartStr = monthStartInt +"";
+            if (monthStartInt < 10)
+                monthStartStr = "0" + monthStartInt;
+            
+            int dateStartInt = calendarStart.get(Calendar.DAY_OF_MONTH);
+            String dateStartStr = dateStartInt + "";
+            if (dateStartInt < 10)
+                dateStartStr = "0" + dateStartInt;
+            
+            int monthEndInt = calendarEnd.get(Calendar.MONTH) + 1;
+            String monthEndStr = monthEndInt +"";
+            if (monthEndInt < 10)
+                monthEndStr = "0" + monthEndInt;
+            
+            int dateEndInt = calendarEnd.get(Calendar.DAY_OF_MONTH);
+            String dateEndStr = dateEndInt + "";
+            if (dateEndInt < 10)
+                dateEndStr = "0" + dateEndInt;
+            
             try
             {
                 String sql = "select pemeriksaan.no_nota, d.nama_dokter, p.nama as nama_pasien, pemeriksaan.total, pemeriksaan.tanggal, pemeriksaan.tinggi_badan,\n" +
@@ -59,7 +79,8 @@ public class Laporan {
     "from pemeriksaan join pasien p on pemeriksaan.id_pasien = p.id_pasien\n" +
     "join dokter d on d.id_dokter = pemeriksaan.id_dokter\n" +
     "where pemeriksaan.deleted_at is null and "
-                        + "tanggal between '"+calendarStart.get(Calendar.YEAR)+"-"+calendarStart.get(Calendar.MONTH)+"-"+calendarStart.get(Calendar.DAY_OF_MONTH)+"' and '"+calendarEnd.get(Calendar.YEAR)+"-"+calendarEnd.get(Calendar.MONTH)+"-"+calendarEnd.get(Calendar.DAY_OF_MONTH)+"'";
+                        + "tanggal between '"+calendarStart.get(Calendar.YEAR)+"-"+monthStartStr+"-"+dateStartStr+"' and '"+calendarEnd.get(Calendar.YEAR)+"-"+monthEndStr+"-"+dateEndStr+"'";
+                System.out.println(sql);
                 Connection con = MySQLConnection.getInstance().getConnection();
                 //ambil file
                 File file = new File("lib/cetak_pasien.jrxml");

@@ -52,7 +52,6 @@ public class DokterPresenter {
             else {
                 view.showError("Data gagal dihapus!");
             }
-            view.setDefaultState();
             index = -1;
             getData();
         }
