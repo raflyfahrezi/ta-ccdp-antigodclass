@@ -6,6 +6,7 @@
 package application.obat;
 
 import application.base.BaseRepository;
+import application.util.SimpleDateFormatFlyWeight;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,7 +94,7 @@ public class ObatRepository extends BaseRepository {
         boolean success = false;
         
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+        String time = SimpleDateFormatFlyWeight.INSTANCE.format(timestamp, "yyyy-MM-dd HH:mm:ss");
         
         String sql = "UPDATE obat SET deleted_at = ? where id_obat = ?";
         

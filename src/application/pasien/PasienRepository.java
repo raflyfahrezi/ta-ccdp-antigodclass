@@ -6,6 +6,7 @@
 package application.pasien;
 
 import application.base.BaseRepository;
+import application.util.SimpleDateFormatFlyWeight;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,7 +97,7 @@ public class PasienRepository extends BaseRepository{
         List<Pasien> pasiens = new ArrayList<>();
         
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+        String time = SimpleDateFormatFlyWeight.INSTANCE.format(timestamp, "yyyy-MM-dd HH:mm:ss");
         
         String sql = "update pasien set deleted_at = ? where id_pasien = ?";
         

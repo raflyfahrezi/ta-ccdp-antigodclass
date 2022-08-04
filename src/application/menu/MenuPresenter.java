@@ -5,9 +5,6 @@
  */
 package application.menu;
 
-import application.pasien.PasienInternalFrame;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 /**

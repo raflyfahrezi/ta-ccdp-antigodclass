@@ -6,6 +6,7 @@
 package application.tindakan;
 
 import application.base.BaseRepository;
+import application.util.SimpleDateFormatFlyWeight;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,7 +76,7 @@ public class TindakanRepository extends BaseRepository{
     
     public boolean destroy(int id){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+        String time = SimpleDateFormatFlyWeight.INSTANCE.format(timestamp, "yyyy-MM-dd HH:mm:ss");
         
         String sql = "update tindakan set deleted_at = ? where id_tindakan = ?";
         
