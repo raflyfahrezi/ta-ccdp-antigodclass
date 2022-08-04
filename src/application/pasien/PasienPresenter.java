@@ -46,17 +46,9 @@ public class PasienPresenter {
     }
     
     public void deleteData() {
-//        if (view.deleteConfirm() == JOptionPane.YES_OPTION) {
-//            view.showSuccess("Data berhasil dihapus.");
-//        } else {
-//            view.showError("Data gagal dihapus.");
-//        }
-//        
-//        view.setDefaultState();
-//        index = -1;
-//        getData();
         if (view.deleteConfirm()== JOptionPane.YES_OPTION){
-            if (repos.destroy(pasiens.get(index).getId_pasien())){
+            int idPasien = pasiens.get(index).getId_pasien();
+            if (new PasienDeleteCommand(repos).execute(idPasien)){
                 view.showSuccess("Data berhasil dihapus!");
             }
             else {
