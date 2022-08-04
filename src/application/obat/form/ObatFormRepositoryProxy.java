@@ -26,7 +26,7 @@ public class ObatFormRepositoryProxy extends ObatFormRepository{
             throw new Exception("Nama obat tidak boleh kosong");
         }
         if (obat.getHarga().compareTo(new BigInteger("0")) == -1) {
-            throw new Exception("Harg obat tidak boleh kurang dari 0");
+            throw new Exception("Harga obat tidak boleh kurang dari 0");
         }
     }
 
