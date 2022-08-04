@@ -20,7 +20,8 @@ import java.util.List;
  * @author Azis Naufal
  */
 public class DokterRepository extends BaseRepository{
-    
+    private SimpleDateFormatFlyWeight dateFormatter = SimpleDateFormatFlyWeight.INSTANCE;
+
     public List<Dokter> getData(){
         List<Dokter> dokters = new ArrayList<>();
         
@@ -85,7 +86,7 @@ public class DokterRepository extends BaseRepository{
         
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         
-        String time = SimpleDateFormatFlyWeight.INSTANCE.format(timestamp, "yyyy-MM-dd HH:mm:ss");
+        String time = dateFormatter.format(timestamp, "yyyy-MM-dd HH:mm:ss");
         
         String sql = "update dokter set deleted_at = ? where id_dokter = ?";
         
