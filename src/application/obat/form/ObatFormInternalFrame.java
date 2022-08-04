@@ -184,12 +184,8 @@ public class ObatFormInternalFrame extends BaseDataTableFrame implements ObatFor
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        if (txtNama.getText().isEmpty()){
-            showError("Nama tidak boleh kosong!");
-        } else {
-            setWaitCursor();
-            presenter.save();
-        }
+        setWaitCursor();
+        presenter.save();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtHargaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHargaKeyReleased

@@ -20,7 +20,7 @@ public class ObatFormPresenter {
     
     public ObatFormPresenter(ObatFormView view) {
         this.view = view;
-        this.repos = new ObatFormRepository();
+        this.repos = new ObatFormRepositoryProxy();
     }
     
     public void setNamaObat(String namaObat) {
@@ -48,10 +48,15 @@ public class ObatFormPresenter {
     public void save() {
         boolean success = false;
         
-        if (obat.getId_obat() < 0) {
-            success = repos.create(obat);
-        } else {
-            success = repos.update(obat);
+        try {
+            if (obat.getId_obat() < 0) {
+                success = repos.create(obat);
+            } else {
+                success = repos.update(obat);
+            }
+        }
+        catch (Exception e) {
+            view.showError(e.getMessage());
         }
         
         if (success) {

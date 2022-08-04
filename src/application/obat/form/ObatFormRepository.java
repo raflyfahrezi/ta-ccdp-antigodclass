@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
  */
 public class ObatFormRepository extends BaseRepository{
     
-    public boolean update(Obat obat) {
+    public boolean update(Obat obat) throws Exception{
         boolean success = false;
         
         String sql = "UPDATE obat SET nama_obat = ?, harga = ?, tanggal_kadaluarsa = ? where id_obat = ?";
@@ -44,7 +44,7 @@ public class ObatFormRepository extends BaseRepository{
         return success;
     }
     
-    public boolean create(Obat obat) {
+    public boolean create(Obat obat) throws Exception {
         boolean success = false;
         
         String sql = "INSERT INTO obat (nama_obat, harga, tanggal_kadaluarsa) VALUES (?, ?, ?)";
