@@ -18,6 +18,17 @@ public class Dokter {
     private String spesialis;
     private Timestamp deleted_at;
 
+    public Dokter() {
+     
+    }
+    
+    public Dokter(String nama, String alamat, String spesialis, Timestamp deleted_at) {
+        this.nama = nama;
+        this.alamat = alamat;
+        this.spesialis = spesialis;
+        this.deleted_at = deleted_at;
+    }
+    
     public int getId_doker() {
         return id_doker;
     }
@@ -56,6 +67,10 @@ public class Dokter {
 
     public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
+    }
+    
+    public Dokter clone() {
+        return new Dokter(nama, alamat, spesialis, deleted_at);
     }
     
 }

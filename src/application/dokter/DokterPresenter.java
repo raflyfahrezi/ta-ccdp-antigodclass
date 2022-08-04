@@ -34,7 +34,12 @@ public class DokterPresenter {
     
     public Dokter getOneData(){
         if(index > -1){
-            return dokters.get(index);
+            Dokter dok1 = dokters.get(index);
+            Dokter dok2 = dok1.clone();
+            
+            boolean same = dok1 == dok2;
+            System.out.println("apakah sama dok1 dan dok2 ? " + same );
+            return dokters.get(index).clone();
         }
         return null;
     }
